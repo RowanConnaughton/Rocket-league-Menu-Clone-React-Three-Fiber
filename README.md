@@ -2,6 +2,13 @@
 
 This is a Rocket league Menu Clone created using the [React Three Fiber](https://docs.pmnd.rs/react-three-fiber/getting-started/introduction) with React Three Fiber
 
+## TODO
+
+1. Create map model
+2. Add navigation
+2. Add Credits
+3. Integrate an API for rocket leauge Stats  
+
 ### Screenshot
 
 
