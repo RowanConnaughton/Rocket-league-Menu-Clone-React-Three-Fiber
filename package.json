@@ -8,6 +8,7 @@
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "gsap": "^3.9.1",
     "react": "^17.0.2",
     "react-colorful": "^5.5.1",
     "react-dat-gui": "^4.1.1",
