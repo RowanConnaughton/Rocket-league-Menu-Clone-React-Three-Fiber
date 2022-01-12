@@ -1,6 +1,6 @@
 .menu-item{
     width: 80%;
-    margin-top: 5;
+    margin-top: 5px;
     font-size: 1.6rem;
     font-weight: 800;
     padding: .8em;
@@ -9,4 +9,10 @@
     border-radius: 5px 5px 5px 5px;
     cursor: pointer;
     clip-path: polygon(0 0, 100% 0%, 96% 100%, 0% 100%);
+
+    &:hover{
+        background-color: white;
+        color: black;
+    }
 }
+

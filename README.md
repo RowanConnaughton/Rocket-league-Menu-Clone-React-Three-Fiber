@@ -4,7 +4,7 @@ This is a Rocket league Menu Clone created using the [React Three Fiber](https:/
 
 ## TODO
 
-1. Create map model
+1. ~~Create map model~~
 2. Add navigation
 2. Add Credits
 3. Integrate an API for rocket leauge Stats  

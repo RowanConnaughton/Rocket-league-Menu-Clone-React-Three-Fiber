@@ -1,11 +1,10 @@
+import * as THREE from 'three'
 import { useState } from "react";
-import { Canvas } from "@react-three/fiber";
-import {
-  OrbitControls,
-  Environment,
-  PerspectiveCamera,
-} from "@react-three/drei";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { OrbitControls,Environment, PerspectiveCamera} from "@react-three/drei";
 import DatGui, { DatNumber } from "react-dat-gui";
+import { useSpring, animated } from '@react-spring/three';
+
 
 import Menu from "../../components/menu/menu";
 
@@ -16,12 +15,32 @@ import StadiumModel from "../../components/models/Stadium";
 import "./homepage.styles.scss";
 import "react-dat-gui/dist/index.css";
 
+
+
+
 const HomePage = () => {
+  
+
   const [Cposition, setCposition] = useState({
     positionx: -1.4,
     positiony: 0.2,
     positionz: 1.9,
   });
+
+  
+
+  // function Dolly() {
+  //   // This one makes the camera move in and out
+  //   useFrame(({ clock, camera }) => {
+  //     camera.position.z = 50 + Math.sin(clock.getElapsedTime()) * 30
+  //   })
+  //   return null
+  // }
+  
+  
+    
+  
+ 
 
   // camera={{ fov: 50, near: 0.1, far: 40, position: [-1.8, 0, 1.6] }}
   return (
@@ -35,7 +54,10 @@ const HomePage = () => {
             Cposition.positiony,
             Cposition.positionz,
           ]}
-        />
+          />
+
+{/* <AnimatedDolly props /> */}
+
 
         <Environment background={true} files="/resources/flower_road_1k.hdr" />
 
