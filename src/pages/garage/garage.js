@@ -5,6 +5,9 @@ import React, {useState} from "react";
 
 import { PopoverPicker } from "../../components/colorpicker/popoverpicker";
 
+import Card from "../../components/card/card";
+
+
 //import models
 import FennecModel from "../../components/models/Fennec";
 import OctaneModel from "../../components/models/Octane";
@@ -35,8 +38,8 @@ const Garage = () => {
     <div className="container">
 
 
-      <div className="garage">
-      <h1>Garage</h1>
+      <Card title={'Garage'} >
+      
       <section className="inner">
       
         <div className="col1">
@@ -163,7 +166,7 @@ const Garage = () => {
           </Canvas>
         </div>
       </section>
-      </div>
+      </Card>
     </div>
   );
 };
