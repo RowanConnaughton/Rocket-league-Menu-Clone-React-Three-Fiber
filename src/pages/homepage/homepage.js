@@ -8,6 +8,7 @@ import { useSpring, animated } from '@react-spring/three';
 
 import Menu from "../../components/menu/menu";
 
+//import models
 import FennecModel from "../../components/models/Fennec";
 import BallModel from "../../components/models/Ball";
 import StadiumModel from "../../components/models/Stadium";
@@ -20,7 +21,7 @@ import "react-dat-gui/dist/index.css";
 
 const HomePage = () => {
   
-
+//camera position
   const [Cposition, setCposition] = useState({
     positionx: -1.4,
     positiony: 0.2,
@@ -28,7 +29,7 @@ const HomePage = () => {
   });
 
   
-
+//camera animation
   // function Dolly() {
   //   // This one makes the camera move in and out
   //   useFrame(({ clock, camera }) => {
@@ -40,9 +41,6 @@ const HomePage = () => {
   
     
   
- 
-
-  // camera={{ fov: 50, near: 0.1, far: 40, position: [-1.8, 0, 1.6] }}
   return (
     <div className="container-home">
       <Menu />
