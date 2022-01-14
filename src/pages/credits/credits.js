@@ -1,12 +1,14 @@
-import React from 'react'
+import React from 'react';
 
-import Card from '../../components/card/card'
+import Card from '../../components/card/card';
+import Logo from '../../components/logo/logo';
 
 import "./credits.styles.scss";
 
 export const Credits = () => {
     return (
         <div className='container'>
+            <Logo/>
             <Card title={'Credits'}>
 
             <section className='sections'>

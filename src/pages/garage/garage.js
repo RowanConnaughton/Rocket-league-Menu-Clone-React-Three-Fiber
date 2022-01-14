@@ -6,7 +6,7 @@ import React, {useState} from "react";
 import { PopoverPicker } from "../../components/colorpicker/popoverpicker";
 
 import Card from "../../components/card/card";
-
+import Logo from "../../components/logo/logo";
 
 //import models
 import FennecModel from "../../components/models/Fennec";
@@ -36,7 +36,7 @@ const Garage = () => {
      
   return (
     <div className="container">
-
+      <Logo/>
 
       <Card title={'Garage'} >
       
