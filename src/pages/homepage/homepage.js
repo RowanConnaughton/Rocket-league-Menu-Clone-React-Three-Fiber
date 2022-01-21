@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls,Environment, PerspectiveCamera} from "@react-three/drei";
 import DatGui, { DatNumber } from "react-dat-gui";
-import { useSpring, animated } from '@react-spring/three';
+
 
 
 import Menu from "../../components/menu/menu";
@@ -18,27 +18,41 @@ import "react-dat-gui/dist/index.css";
 
 
 
+//camera pan animation
+function damp(target, to, step, delta) {
+  if (target instanceof THREE.Vector3) {
+    target.x = THREE.MathUtils.damp(target.x, to[0], step, delta)
+    target.y = THREE.MathUtils.damp(target.y, to[1], step, delta)
+    target.z = THREE.MathUtils.damp(target.z, to[2], step, delta)
+  }
+}
+
+function Animation() {
+  
+  useFrame((state, delta) => {
+    const step = 1
+    
+    damp(state.camera.position, [ -1.4 ,  0.2,  1.9 ], step, delta)
+    state.camera.lookAt(0, 0, 0)
+    state.camera.updateProjectionMatrix()
+  })
+  return (<mesh></mesh>)
+}
+
+
+
+
 
 const HomePage = () => {
   
 //camera position
   const [Cposition, setCposition] = useState({
-    positionx: -1.4,
-    positiony: 0.2,
-    positionz: 1.9,
+    positionx: 10,
+    positiony: 1,
+    positionz: 1.5,
   });
 
-  
-//camera animation
-  // function Dolly() {
-  //   // This one makes the camera move in and out
-  //   useFrame(({ clock, camera }) => {
-  //     camera.position.z = 50 + Math.sin(clock.getElapsedTime()) * 30
-  //   })
-  //   return null
-  // }
-  
-  
+    
     
   
   return (
@@ -53,8 +67,7 @@ const HomePage = () => {
             Cposition.positionz,
           ]}
           />
-
-{/* <AnimatedDolly props /> */}
+        <Animation/>
 
 
         <Environment background={true} files="/resources/flower_road_1k.hdr" />

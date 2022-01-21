@@ -99,7 +99,7 @@ const Garage = () => {
         </div>
 
         <div className="col2">
-          <Canvas className="canvas" dpr={[1, 2]} camera={{ fov: 40, near: 0.1, far: 40, position: [-3.5, 0.5, 3] }}>
+          <Canvas className="canvas" dpr={[1, 2]} camera={{ fov: 50, near: 0.1, far: 40, position: [-3.5, 0.5, 3] }}>
             <ambientLight intensity={1} />
             <pointLight args={[0xffffff, 2, 0]} position={[10, 10, 10]} />
             <pointLight args={[0xffffff, 2, 0]} position={[-10, 10, -10]} />
