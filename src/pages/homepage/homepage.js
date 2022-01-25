@@ -1,10 +1,12 @@
-import * as THREE from 'three'
+import * as THREE from "three";
 import { useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { OrbitControls,Environment, PerspectiveCamera} from "@react-three/drei";
+import {
+  OrbitControls,
+  Environment,
+  PerspectiveCamera,
+} from "@react-three/drei";
 import DatGui, { DatNumber } from "react-dat-gui";
-
-
 
 import Menu from "../../components/menu/menu";
 
@@ -16,45 +18,34 @@ import StadiumModel from "../../components/models/Stadium";
 import "./homepage.styles.scss";
 import "react-dat-gui/dist/index.css";
 
-
-
 //camera pan animation
 function damp(target, to, step, delta) {
   if (target instanceof THREE.Vector3) {
-    target.x = THREE.MathUtils.damp(target.x, to[0], step, delta)
-    target.y = THREE.MathUtils.damp(target.y, to[1], step, delta)
-    target.z = THREE.MathUtils.damp(target.z, to[2], step, delta)
+    target.x = THREE.MathUtils.damp(target.x, to[0], step, delta);
+    target.y = THREE.MathUtils.damp(target.y, to[1], step, delta);
+    target.z = THREE.MathUtils.damp(target.z, to[2], step, delta);
   }
 }
 
 function Animation() {
-  
   useFrame((state, delta) => {
-    const step = 1
-    
-    damp(state.camera.position, [ -1.4 ,  0.2,  1.9 ], step, delta)
-    state.camera.lookAt(0, 0, 0)
-    state.camera.updateProjectionMatrix()
-  })
-  return (<mesh></mesh>)
+    const step = 2;
+
+    damp(state.camera.position, [-1.4, 0.2, 1.9], step, delta);
+    state.camera.lookAt(0, 0, 0);
+    state.camera.updateProjectionMatrix();
+  });
+  return <mesh></mesh>;
 }
 
-
-
-
-
 const HomePage = () => {
-  
-//camera position
+  //camera position
   const [Cposition, setCposition] = useState({
     positionx: 10,
     positiony: 1,
     positionz: 1.5,
   });
 
-    
-    
-  
   return (
     <div className="container-home">
       <Menu />
@@ -66,9 +57,8 @@ const HomePage = () => {
             Cposition.positiony,
             Cposition.positionz,
           ]}
-          />
-        <Animation/>
-
+        />
+        <Animation />
 
         <Environment background={true} files="/resources/flower_road_1k.hdr" />
 
@@ -91,11 +81,10 @@ const HomePage = () => {
         />
 
         <StadiumModel
-        receiveShadow
+          receiveShadow
           position={[0, -0.5, 0]}
           rotation={[0, 400, 0]}
           scale={[0.02, 0.02, 0.02]}
-          
         />
 
         <FennecModel
@@ -104,11 +93,6 @@ const HomePage = () => {
           rotation={[0, 500, 0]}
           scale={[0.01, 0.01, 0.01]}
         />
-
-        {/* <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -.5, 0]} receiveShadow>
-        <planeBufferGeometry attach="geometry" args={[1000, 1000]} />
-        <meshPhongMaterial attach="material" color="#d1cebd" />
-      </mesh> */}
 
         <BallModel
           castShadow
