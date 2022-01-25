@@ -8,6 +8,7 @@ import {
 } from "@react-three/drei";
 import DatGui, { DatNumber } from "react-dat-gui";
 
+//import components
 import Menu from "../../components/menu/menu";
 
 //import models
@@ -15,6 +16,8 @@ import FennecModel from "../../components/models/Fennec";
 import BallModel from "../../components/models/Ball";
 import StadiumModel from "../../components/models/Stadium";
 
+
+//import stlyes
 import "./homepage.styles.scss";
 import "react-dat-gui/dist/index.css";
 
@@ -27,6 +30,7 @@ function damp(target, to, step, delta) {
   }
 }
 
+//camera pan animation
 function Animation() {
   useFrame((state, delta) => {
     const step = 2;
@@ -50,6 +54,7 @@ const HomePage = () => {
     <div className="container-home">
       <Menu />
       <Canvas id="canvas" flat dpr={[1, 2]} shadows>
+        {/* default camera */}
         <PerspectiveCamera
           makeDefault
           position={[
@@ -58,10 +63,13 @@ const HomePage = () => {
             Cposition.positionz,
           ]}
         />
+        {/* camera animation */}
         <Animation />
 
+          {/* set sky box */}
         <Environment background={true} files="/resources/flower_road_1k.hdr" />
 
+          {/* lights */}
         <ambientLight intensity={0.5} />
         <spotLight
           intensity={0.8}
@@ -71,7 +79,7 @@ const HomePage = () => {
           shadow-mapSize-Height={2048}
           castShadow
         />
-
+          {/* orbital controls */}
         <OrbitControls
           enablePan={true}
           enableZoom={true}
@@ -80,20 +88,21 @@ const HomePage = () => {
           maxPolarAngle={Math.PI / 2}
         />
 
+          {/* stadium model */}
         <StadiumModel
           receiveShadow
           position={[0, -0.5, 0]}
           rotation={[0, 400, 0]}
           scale={[0.02, 0.02, 0.02]}
         />
-
+        {/* car model */}
         <FennecModel
           castShadow
           position={[0, -0.5, 0]}
           rotation={[0, 500, 0]}
           scale={[0.01, 0.01, 0.01]}
         />
-
+          {/* ball model */}
         <BallModel
           castShadow
           position={[5, 0.5, -2]}
@@ -101,6 +110,7 @@ const HomePage = () => {
           scale={[0.01, 0.01, 0.01]}
         />
       </Canvas>
+      {/* dat gui controls */}
       <DatGui data={Cposition} onUpdate={setCposition}>
         <DatNumber
           path="positionx"

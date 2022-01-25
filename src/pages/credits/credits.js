@@ -1,8 +1,10 @@
 import React from 'react';
 
+//import components
 import Card from '../../components/card/card';
 import Logo from '../../components/logo/logo';
 
+//import styles
 import "./credits.styles.scss";
 
 export const Credits = () => {

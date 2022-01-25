@@ -3,6 +3,7 @@ import { OrbitControls } from "@react-three/drei";
 
 import React, {useState} from "react";
 
+//import components
 import { PopoverPicker } from "../../components/colorpicker/popoverpicker";
 
 import Card from "../../components/card/card";
@@ -13,6 +14,7 @@ import FennecModel from "../../components/models/Fennec";
 import OctaneModel from "../../components/models/Octane";
 import DominusModel from "../../components/models/Dominus";
 
+//import styles
 import "./garage.styles.scss";
 
 
@@ -23,7 +25,7 @@ import "./garage.styles.scss";
 const Garage = () => {
 
   
-
+    
     const [priColor, setPriColor] = useState("");
     const [secColor, setSecColor] = useState("");
     const [winColor, setWinColor] = useState("");
