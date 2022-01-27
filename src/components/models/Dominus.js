@@ -8,14 +8,19 @@ title: Dominus - Rocket League Car
 
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
+import {useSelector} from "react-redux";
 
-export default function DominusModel({wheel, priColor,secColor,winColor,rimColor,tireColor, ...props }) {
+
+export default function DominusModel({...props}) {
   const group = useRef()
   const { nodes, materials } = useGLTF('./models/dominus/scene.gltf')
   const  octane = useGLTF('./models/octane/scene.gltf')
   const fennec = useGLTF('./models/fennec/scene.gltf')
+  const model = useSelector(state => state.model);
+  const { wheel, priColor, secColor,  winColor, tireColor, rimColor} = model;
 
   return (
+   
     <group ref={group} {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
         <group rotation={[Math.PI / 2, 0, 0]}>
@@ -196,6 +201,7 @@ export default function DominusModel({wheel, priColor,secColor,winColor,rimColor
         </group>
       </group>
     </group>
+    
   )
 }
 

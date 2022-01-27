@@ -8,19 +8,22 @@ title: Fennec - Rocket League Car
 
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
+import {useSelector} from "react-redux";
 
 
-const FennecModel =({wheel, priColor,secColor,winColor,rimColor,tireColor, ...props }) => {
+const FennecModel =({...props}) => {
   const group = useRef()
   const { nodes, materials } = useGLTF('./models/fennec/scene.gltf')
   const  octane = useGLTF('./models/octane/scene.gltf')
   const  dominus = useGLTF('./models/dominus/scene.gltf')
-
+  const model = useSelector(state => state.model);
+  const { wheel, priColor, secColor,  winColor, tireColor, rimColor} = model;
   
 
-  console.log(nodes);
+  
   
   return (
+    
     <group ref={group} {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
         <group rotation={[Math.PI / 2, 0, 0]}>
@@ -207,6 +210,7 @@ const FennecModel =({wheel, priColor,secColor,winColor,rimColor,tireColor, ...pr
         </group>
       </group>
     </group>
+    
   )
 }
 

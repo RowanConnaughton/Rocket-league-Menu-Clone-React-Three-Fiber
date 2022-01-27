@@ -13,9 +13,13 @@
     "react-colorful": "^5.5.1",
     "react-dat-gui": "^4.1.1",
     "react-dom": "^17.0.2",
+    "react-redux": "^7.2.6",
     "react-router-dom": "^6.0.2",
     "react-scripts": "4.0.3",
     "react-spring": "^9.4.1",
+    "redux": "^4.1.2",
+    "redux-logger": "^3.0.6",
+    "redux-persist": "^6.0.0",
     "sass": "^1.44.0",
     "three": "^0.135.0",
     "web-vitals": "^1.1.2"

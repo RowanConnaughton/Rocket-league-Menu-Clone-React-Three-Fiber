@@ -8,15 +8,23 @@ title: Octane - Rocket League Car
 
 import React, { useRef } from 'react'
 import { useGLTF } from '@react-three/drei'
+import {useSelector} from "react-redux";
 
-export default function OctaneModel({wheel, priColor,secColor,winColor,rimColor,tireColor,...props }) {
+ function OctaneModel({ ...props }) {
   const group = useRef()
   const { nodes, materials } = useGLTF('./models/octane/scene.gltf')
   const fennec = useGLTF('./models/fennec/scene.gltf')
   const  dominus = useGLTF('./models/dominus/scene.gltf')
+  const model = useSelector(state => state.model);
+  const { wheel, priColor, secColor,  winColor, tireColor, rimColor} = model;
   
   
+
+
+  console.log(model)
+
   return (
+    
     <group ref={group} {...props} dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
         <group rotation={[Math.PI / 2, 0, 0]}>
@@ -203,7 +211,11 @@ export default function OctaneModel({wheel, priColor,secColor,winColor,rimColor,
         </group>
       </group>
     </group>
+    
   )
 }
 
 useGLTF.preload('/scene.gltf')
+
+
+export default OctaneModel;

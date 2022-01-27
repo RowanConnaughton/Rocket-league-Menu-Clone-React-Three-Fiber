@@ -1,7 +1,11 @@
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
+import { Provider } from 'react-redux';
+import {useSelector, useDispatch} from "react-redux";
 
-import React, {useState} from "react";
+import React from "react";
+import { store } from "../../redux/store";
+import { setCurrentModel, setCurrentWheel, setCurrentPriColor, setCurrentSecColor, setCurrentWinColor, setCurrentTireColor, setCurrentRimColor} from "../../redux/model/model.actions";
 
 //import components
 import { PopoverPicker } from "../../components/colorpicker/popoverpicker";
@@ -20,23 +24,27 @@ import "./garage.styles.scss";
 
 
 
-
-
 const Garage = () => {
 
-  
-    
-    const [priColor, setPriColor] = useState("");
-    const [secColor, setSecColor] = useState("");
-    const [winColor, setWinColor] = useState("");
-    const [tireColor, setTireColor] = useState("");
-    const [rimColor, setRimColor] = useState("");
-    const [model, setModel] = useState('default');
+  const model = useSelector(state => state.model);
+  const {currentModel, wheel, priColor, secColor,  winColor, tireColor, rimColor} = model;
+ const dispatch = useDispatch();
 
-    const [wheel, setWheel] = useState('default');
+ function handleRest() {
+  dispatch(setCurrentModel('default'));
+  dispatch(setCurrentWheel('default'));
+  dispatch(setCurrentPriColor('#001EE0'));
+  dispatch(setCurrentSecColor('#2C2C2C'));
+  dispatch(setCurrentWinColor('#1A1A1A'));
+  dispatch(setCurrentTireColor('#000000'));
+  dispatch(setCurrentRimColor('#000000'));
+}
+ 
+    
     
      
   return (
+    
     <div className="container">
       <Logo/>
 
@@ -54,46 +62,48 @@ const Garage = () => {
             <div>
               <h2>Select Car</h2>
               <div className="btn-container">
-            <button className="btn" onClick={() => {setModel('default')}}>Fennec</button>
-            <button className="btn" onClick={() => {setModel('octane')}}>Octane</button>
-            <button className="btn" onClick={() => {setModel('dominus')}}>Dominus</button>
+              
+            <button className="btn" onClick={() => {dispatch(setCurrentModel('default'))}}>Fennec</button>
+            <button className="btn" onClick={() => {dispatch(setCurrentModel('octane'))}}>Octane</button>
+            <button className="btn" onClick={() => {dispatch(setCurrentModel('dominus'))}}>Dominus</button>  
+            
             </div>
             </div>
                 
             <div>
             <h2>Select Wheels</h2>
             <div className="btn-container">
-                <button className="btn" onClick={() => {setWheel('alpha')}}>Alpha</button>
-                <button className="btn" onClick={() => {setWheel('default')}}>Dieci</button>
-                <button className="btn" onClick={() => {setWheel('cristiano')}}>Cristiano</button>
+                <button className="btn" onClick={() => {dispatch(setCurrentWheel('alpha'))}}>Alpha</button>
+                <button className="btn" onClick={() => {dispatch(setCurrentWheel('default'))}}>Dieci</button>
+                <button className="btn" onClick={() => {dispatch(setCurrentWheel('cristiano'))}}>Cristiano</button>
                 </div>
             </div>
 
             <div className="container-colorpicker" >
                 <h2>Primary Color</h2>
-                <PopoverPicker color={priColor} onChange={setPriColor} />
+                <PopoverPicker color={priColor}  onChange={e => dispatch(setCurrentPriColor(e))} />
                            
             </div>
             <div className="container-colorpicker">
                 <h2>Secondary Color</h2>
-                <PopoverPicker color={secColor} onChange={setSecColor} />
+                <PopoverPicker color={secColor} onChange={e => dispatch(setCurrentSecColor(e))} />
             </div>
             <div className="container-colorpicker">
                 <h2>Window Color</h2>
-                <PopoverPicker color={winColor} onChange={setWinColor} />
+                <PopoverPicker color={winColor}  onChange={e => dispatch(setCurrentWinColor(e))}/>
             </div>
             <div className="container-colorpicker">
                 <h2>Tire Color</h2>
-                <PopoverPicker color={tireColor} onChange={setTireColor} />
+                <PopoverPicker color={tireColor}  onChange={e => dispatch(setCurrentTireColor(e))}/>
             </div>
             <div className="container-colorpicker">
                 <h2>Rim Color</h2>
-                <PopoverPicker color={rimColor} onChange={setRimColor} />
+                <PopoverPicker color={rimColor} onChange={e => dispatch(setCurrentRimColor(e))} />
             </div>
 
 
             <div className="container-colorpicker" >
-                <button className="btn" onClick={() => window.location.reload(false)}>reset</button>               
+                <button className="btn" onClick={handleRest}>reset</button>               
             </div>
 
 
@@ -116,9 +126,10 @@ const Garage = () => {
 
 {(() => {
   
-  switch (model) {
+  switch (currentModel) {
      case 'octane':
          return (
+          <Provider store={store}>
           <OctaneModel 
           wheel={wheel}
                 priColor={priColor}
@@ -130,10 +141,12 @@ const Garage = () => {
                 rotation={[0, 500, 0]}
                 scale={[0.02, 0.02, 0.02]}
           />
+          </Provider>
          )
 
          case 'dominus':
           return (
+            <Provider store={store}>
            <DominusModel 
            wheel={wheel}
                  priColor={priColor}
@@ -145,10 +158,12 @@ const Garage = () => {
                  rotation={[0, 500, 0]}
                  scale={[0.02, 0.02, 0.02]}
            />
+           </Provider>
           )
      
      default:
          return (
+          <Provider store={store}>
           <FennecModel
           wheel={wheel}
           priColor={priColor}
@@ -160,6 +175,7 @@ const Garage = () => {
         rotation={[0, 500, 0]}
         scale={[0.02, 0.02, 0.02]}
       />
+      </Provider>
          )
   }
 
@@ -170,7 +186,14 @@ const Garage = () => {
       </section>
       </Card>
     </div>
+    
   );
 };
+
+
+
+
+
+
 
 export default Garage;

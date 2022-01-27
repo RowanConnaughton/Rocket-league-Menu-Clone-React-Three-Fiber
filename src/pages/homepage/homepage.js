@@ -1,18 +1,22 @@
 import * as THREE from "three";
 import { useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
+import { Provider } from 'react-redux';
+import {useSelector} from "react-redux";
 import {
   OrbitControls,
   Environment,
   PerspectiveCamera,
 } from "@react-three/drei";
 import DatGui, { DatNumber } from "react-dat-gui";
-
+import { store } from "../../redux/store";
 //import components
 import Menu from "../../components/menu/menu";
 
 //import models
 import FennecModel from "../../components/models/Fennec";
+import OctaneModel from "../../components/models/Octane";
+import DominusModel from "../../components/models/Dominus";
 import BallModel from "../../components/models/Ball";
 import StadiumModel from "../../components/models/Stadium";
 
@@ -49,6 +53,10 @@ const HomePage = () => {
     positiony: 1,
     positionz: 1.5,
   });
+
+  const model = useSelector(state => state.model);
+  const {currentModel, wheel, priColor, secColor,  winColor, tireColor, rimColor} = model;
+
 
   return (
     <div className="container-home">
@@ -96,12 +104,66 @@ const HomePage = () => {
           scale={[0.02, 0.02, 0.02]}
         />
         {/* car model */}
-        <FennecModel
-          castShadow
-          position={[0, -0.5, 0]}
-          rotation={[0, 500, 0]}
-          scale={[0.01, 0.01, 0.01]}
-        />
+
+        {(() => {
+  
+  switch (currentModel) {
+     case 'octane':
+         return (
+          <Provider store={store}>
+          <OctaneModel 
+          wheel={wheel}
+                priColor={priColor}
+                secColor={secColor}
+                winColor={winColor}
+                tireColor={tireColor}
+                rimColor={rimColor}
+                position={[0, -0.5, 0]}
+                rotation={[0, 500, 0]}
+                scale={[0.01, 0.01, 0.01]}
+          />
+          </Provider>
+         )
+
+         case 'dominus':
+          return (
+            <Provider store={store}>
+           <DominusModel 
+           wheel={wheel}
+                 priColor={priColor}
+                 secColor={secColor}
+                 winColor={winColor}
+                 tireColor={tireColor}
+                 rimColor={rimColor}
+                 position={[0, -0.5, 0]}
+                 rotation={[0, 500, 0]}
+                 scale={[0.01, 0.01, 0.01]}
+           />
+           </Provider>
+          )
+     
+     default:
+         return (
+          <Provider store={store}>
+          <FennecModel
+          wheel={wheel}
+          priColor={priColor}
+          secColor={secColor}
+          winColor={winColor}
+          tireColor={tireColor}
+          rimColor={rimColor}
+        position={[0, -0.5, 0]}
+        rotation={[0, 500, 0]}
+        scale={[0.01, 0.01, 0.01]}
+      />
+      </Provider>
+         )
+  }
+
+})()}
+
+
+      
           {/* ball model */}
         <BallModel
           castShadow
