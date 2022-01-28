@@ -7,7 +7,7 @@ import Logo from "../../components/logo/logo";
 //import stlyes
 import "./replay.styles.scss";
 
-const replay = () => {
+const Replay = () => {
   return (
     <div className="container">
     <Logo/>
@@ -19,4 +19,4 @@ const replay = () => {
     </div>);
 };
 
-export default replay;
+export default Replay;
