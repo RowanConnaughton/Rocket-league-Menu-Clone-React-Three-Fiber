@@ -8,6 +8,7 @@ const Menu = () => {
     return (
         <div className='menu'>
             <MenuItem title={'Garage'} linkUrl={'garage'}/>
+            <MenuItem title={'Replay Stats'} linkUrl={'replay'}/>
             <MenuItem title={'Credits'} linkUrl={'credits'}/>
         </div>
     )
