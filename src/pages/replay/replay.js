@@ -15,6 +15,10 @@ const Replay = () => {
     <Card title={'Search Replays'} >
     search
     </Card>
+
+    <Card title={'Search Results'} >
+    results
+    </Card>
         
     </div>);
 };
