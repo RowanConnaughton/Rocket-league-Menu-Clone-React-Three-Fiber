@@ -1,0 +1,36 @@
+.form{
+    margin:10px;
+    padding: 10px;
+    width: 100%;
+
+    &__search{
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 10px;
+    }
+
+    &__checkboxes-container{
+        display: flex;
+        flex-direction: row;
+        
+        justify-content: space-around;
+        margin: 5px 0;
+        width: 100%;
+
+    }
+
+    &__checkboxes{
+            
+        
+
+        .form-control {
+            
+        
+           display: flex;
+           justify-content: space-between;
+            
+            
+          }
+              
+    }
+}

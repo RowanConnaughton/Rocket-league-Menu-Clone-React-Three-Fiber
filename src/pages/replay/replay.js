@@ -3,6 +3,7 @@ import React from 'react';
 //import components
 import Card from "../../components/card/card";
 import Logo from "../../components/logo/logo";
+import Form from '../../components/form/form';
 
 //import stlyes
 import "./replay.styles.scss";
@@ -13,7 +14,7 @@ const Replay = () => {
     <Logo/>
 
     <Card title={'Search Replays'} >
-    search
+    <Form />
     </Card>
 
     <Card title={'Search Results'} >
