@@ -1,8 +1,8 @@
 import * as THREE from "three";
 import { useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Provider } from 'react-redux';
-import {useSelector} from "react-redux";
+import { Provider } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   OrbitControls,
   Environment,
@@ -20,10 +20,9 @@ import DominusModel from "../../components/models/Dominus";
 import BallModel from "../../components/models/Ball";
 import StadiumModel from "../../components/models/Stadium";
 
-
 //import stlyes
 import "./homepage.styles.scss";
-import "react-dat-gui/dist/index.css";
+// import "react-dat-gui/dist/dist/index.css";
 
 //camera pan animation
 function damp(target, to, step, delta) {
@@ -54,9 +53,16 @@ const HomePage = () => {
     positionz: 1.5,
   });
 
-  const model = useSelector(state => state.model);
-  const {currentModel, wheel, priColor, secColor,  winColor, tireColor, rimColor} = model;
-
+  const model = useSelector((state) => state.model);
+  const {
+    currentModel,
+    wheel,
+    priColor,
+    secColor,
+    winColor,
+    tireColor,
+    rimColor,
+  } = model;
 
   return (
     <div className="container-home">
@@ -74,10 +80,10 @@ const HomePage = () => {
         {/* camera animation */}
         <Animation />
 
-          {/* set sky box */}
+        {/* set sky box */}
         <Environment background={true} files="/resources/flower_road_1k.hdr" />
 
-          {/* lights */}
+        {/* lights */}
         <ambientLight intensity={0.5} />
         <spotLight
           intensity={0.8}
@@ -87,7 +93,7 @@ const HomePage = () => {
           shadow-mapSize-Height={2048}
           castShadow
         />
-          {/* orbital controls */}
+        {/* orbital controls */}
         <OrbitControls
           enablePan={true}
           enableZoom={true}
@@ -96,7 +102,7 @@ const HomePage = () => {
           maxPolarAngle={Math.PI / 2}
         />
 
-          {/* stadium model */}
+        {/* stadium model */}
         <StadiumModel
           receiveShadow
           position={[0, -0.5, 0]}
@@ -106,65 +112,61 @@ const HomePage = () => {
         {/* car model */}
 
         {(() => {
-  
-  switch (currentModel) {
-     case 'octane':
-         return (
-          <Provider store={store}>
-          <OctaneModel 
-          wheel={wheel}
-                priColor={priColor}
-                secColor={secColor}
-                winColor={winColor}
-                tireColor={tireColor}
-                rimColor={rimColor}
-                position={[0, -0.5, 0]}
-                rotation={[0, 500, 0]}
-                scale={[0.01, 0.01, 0.01]}
-          />
-          </Provider>
-         )
+          switch (currentModel) {
+            case "octane":
+              return (
+                <Provider store={store}>
+                  <OctaneModel
+                    wheel={wheel}
+                    priColor={priColor}
+                    secColor={secColor}
+                    winColor={winColor}
+                    tireColor={tireColor}
+                    rimColor={rimColor}
+                    position={[0, -0.5, 0]}
+                    rotation={[0, 500, 0]}
+                    scale={[0.01, 0.01, 0.01]}
+                  />
+                </Provider>
+              );
 
-         case 'dominus':
-          return (
-            <Provider store={store}>
-           <DominusModel 
-           wheel={wheel}
-                 priColor={priColor}
-                 secColor={secColor}
-                 winColor={winColor}
-                 tireColor={tireColor}
-                 rimColor={rimColor}
-                 position={[0, -0.5, 0]}
-                 rotation={[0, 500, 0]}
-                 scale={[0.01, 0.01, 0.01]}
-           />
-           </Provider>
-          )
-     
-     default:
-         return (
-          <Provider store={store}>
-          <FennecModel
-          wheel={wheel}
-          priColor={priColor}
-          secColor={secColor}
-          winColor={winColor}
-          tireColor={tireColor}
-          rimColor={rimColor}
-        position={[0, -0.5, 0]}
-        rotation={[0, 500, 0]}
-        scale={[0.01, 0.01, 0.01]}
-      />
-      </Provider>
-         )
-  }
+            case "dominus":
+              return (
+                <Provider store={store}>
+                  <DominusModel
+                    wheel={wheel}
+                    priColor={priColor}
+                    secColor={secColor}
+                    winColor={winColor}
+                    tireColor={tireColor}
+                    rimColor={rimColor}
+                    position={[0, -0.5, 0]}
+                    rotation={[0, 500, 0]}
+                    scale={[0.01, 0.01, 0.01]}
+                  />
+                </Provider>
+              );
 
-})()}
+            default:
+              return (
+                <Provider store={store}>
+                  <FennecModel
+                    wheel={wheel}
+                    priColor={priColor}
+                    secColor={secColor}
+                    winColor={winColor}
+                    tireColor={tireColor}
+                    rimColor={rimColor}
+                    position={[0, -0.5, 0]}
+                    rotation={[0, 500, 0]}
+                    scale={[0.01, 0.01, 0.01]}
+                  />
+                </Provider>
+              );
+          }
+        })()}
 
-
-      
-          {/* ball model */}
+        {/* ball model */}
         <BallModel
           castShadow
           position={[5, 0.5, -2]}
